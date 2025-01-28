@@ -1,0 +1,8 @@
+version: "3"
+services:
+  rpt-presensi:
+    image: rpt-presensi:v1
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./.env:/build/.env
