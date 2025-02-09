@@ -207,7 +207,7 @@ public class ReportService {
 
     public void generateReport(String jasperFile, String format, Map<String, Object> parameters,
                                HttpServletResponse response, String outputName) {
-        String reportResource = "classpath:templates/jrxml/kehadiran/" + jasperFile + ".jasper";
+        String reportResource = "classpath:templates/jrxml/report/" + jasperFile + ".jasper";
         JasperReport jasperReport;
         try (InputStream jasperStream = resourceLoader.getResource(reportResource).getInputStream();
                 Connection con=dataSource.getConnection()) {

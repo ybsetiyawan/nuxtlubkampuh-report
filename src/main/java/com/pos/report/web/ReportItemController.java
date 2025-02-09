@@ -23,19 +23,42 @@ public class ReportItemController {
     @Autowired
     ReportService reportService;
     
-    @RequestMapping(value = "surat-jalan*", method = RequestMethod.GET)
+    // @RequestMapping(value = "surat-jalan*", method = RequestMethod.GET)
+    // public void RptSuratJalan(HttpServletRequest request, HttpServletResponse response) {
+    //     String uri = request.getRequestURI();
+    //     String format = uri.substring(uri.lastIndexOf(".") + 1);
+    //     String imgPath = context.getRealPath("/img") + System.getProperty("file.separator");
+    //     System.out.println("uri : " + uri + ", context : " + context.getRealPath("/templates/jrxml/report/"));
+    //     String id = request.getParameter("id");
+    //     System.out.println("id" + id);
+
+    //     Map<String, Object> parameters = new HashMap<>();
+    //     parameters.put("imgPath", imgPath);
+    //     parameters.put("id", id);
+
+    //     reportService.generateReport("surat-jalan", format, parameters, response, "surat-jalan");
+    // }
+
+    @RequestMapping(value = "penerimaan*", method = RequestMethod.GET)
     public void RptSuratJalan(HttpServletRequest request, HttpServletResponse response) {
-        String uri = request.getRequestURI();
-        String format = uri.substring(uri.lastIndexOf(".") + 1);
-        String imgPath = context.getRealPath("/img") + System.getProperty("file.separator");
-        System.out.println("uri : " + uri + ", context : " + context.getRealPath("/templates/jrxml/report/"));
-        String id = request.getParameter("id");
-        System.out.println("id" + id);
+    String uri = request.getRequestURI();
+    String format = uri.substring(uri.lastIndexOf(".") + 1);
+    
+    // Path gambar di dalam aplikasi
+    String imgPath = context.getRealPath("/img") + System.getProperty("file.separator");
+    String logoPath = imgPath + "logo.png";  // Pastikan file "logo.png" ada di folder img
 
-        Map<String, Object> parameters = new HashMap<>();
-        parameters.put("imgPath", imgPath);
-        parameters.put("id", id);
+    System.out.println("URI : " + uri + ", Context : " + context.getRealPath("/templates/jrxml/report/"));
 
-        reportService.generateReport("surat-jalan", format, parameters, response, "surat-jalan");
-    }
+    String id = request.getParameter("id");
+    System.out.println("ID: " + id);
+
+    Map<String, Object> parameters = new HashMap<>();
+    parameters.put("imgPath", imgPath);
+    parameters.put("logoPath", logoPath);  // Tambahkan path gambar ke parameter
+    parameters.put("id", id);
+
+    reportService.generateReport("Blank_A4", format, parameters, response, "Blank_A4");
+}
+
 }
